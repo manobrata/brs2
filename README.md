@@ -46,7 +46,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]: n
 lxc profile create kubernetes
 lxc profile edit kubernetes
 
-config:
+#config:
   boot.autostart: "true"
   linux.kernel_modules: ip_vs,ip_vs_rr,ip_vs_wrr,ip_vs_sh,ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
   raw.lxc: |
@@ -76,7 +76,9 @@ used_by: []
 # Create Container
 
 lxc launch --profile default --profile kubernetes ubuntu:20.04 master
+
 lxc launch --profile default --profile kubernetes ubuntu:20.04 worker1
+
 lxc launch --profile default --profile kubernetes ubuntu:20.04 worker2
 
 lxc list
