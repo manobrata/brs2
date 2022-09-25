@@ -3,6 +3,7 @@
 # Instal LXD
  
 sudo snap install lxd
+ 
  sudo lxd init
  
  Would you like to use LXD clustering? (yes/no) [default=no]: no
