@@ -92,16 +92,23 @@ lxc list
 +---------+---------+-----------------------+------+-----------+-----------+
 | worker2 | RUNNING | 10.209.106.180 (eth0) |      | CONTAINER | 0         |
 +---------+---------+-----------------------+------+-----------+-----------+
-# set password
+
+
+#set password
 lxc exec master bash
+
 lxc exec worker1 bash
+
 lxc exec worker2 bash
 
 # Kubernetes cluster using Ansible
 
 ansible-playbook user.yml
+
 ansible-playbook kubernetes-inatll.yaml
+
 ansible-playbook masternode.yaml
+
 ansible-playbook workerjoin.yaml
 
 # Kubernetes Dashboard and metric server
@@ -111,7 +118,7 @@ kubectl create -f dashboard.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 kubectl patch -n kubernetes-dashboard svc kubernetes-dashboard --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
 
-# get the token to login the dashboard
+#get the token to login the dashboard
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
