@@ -93,8 +93,8 @@ lxc list
 | worker2 | RUNNING | 10.209.106.180 (eth0) |      | CONTAINER | 0         |
 +---------+---------+-----------------------+------+-----------+-----------+
 
-
 #set password
+
 lxc exec master bash
 
 lxc exec worker1 bash
