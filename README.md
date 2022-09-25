@@ -1,6 +1,6 @@
 # brs2
 
- Instal LXD
+# Instal LXD
  
 sudo snap install lxd
  sudo lxd init
