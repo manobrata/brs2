@@ -83,15 +83,9 @@ lxc launch --profile default --profile kubernetes ubuntu:20.04 worker2
 
 lxc list
 
-+---------+---------+-----------------------+------+-----------+-----------+
-|  NAME   |  STATE  |         IPV4          | IPV6 |   TYPE    | SNAPSHOTS |
-+---------+---------+-----------------------+------+-----------+-----------+
-| master  | RUNNING | 10.209.106.250 (eth0) |      | CONTAINER | 0         |
-+---------+---------+-----------------------+------+-----------+-----------+
-| worker1 | RUNNING | 10.209.106.80 (eth0)  |      | CONTAINER | 0         |
-+---------+---------+-----------------------+------+-----------+-----------+
-| worker2 | RUNNING | 10.209.106.180 (eth0) |      | CONTAINER | 0         |
-+---------+---------+-----------------------+------+-----------+-----------+
+
+![image](https://user-images.githubusercontent.com/71640997/192134252-08a6d79c-0340-4d33-80b8-de5200d36f72.png)
+
 
 #set password
 
@@ -116,10 +110,14 @@ ansible-playbook workerjoin.yaml
 kubectl create -f dashboard.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
+
 kubectl patch -n kubernetes-dashboard svc kubernetes-dashboard --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
 
 #get the token to login the dashboard
+
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+
+
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 
